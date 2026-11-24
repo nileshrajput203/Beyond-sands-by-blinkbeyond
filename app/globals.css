@@ -48,9 +48,250 @@ html {
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   background: transparent;
-  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Mobile-only Viewport Guard: Strict Zero Desktop Impact */
+@media (max-width: 767px) {
+  html, body {
+    overflow-x: clip !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    position: relative;
+    touch-action: pan-y pinch-zoom;
+    -webkit-overflow-scrolling: touch;
+  }
+  .noise-overlay {
+    display: none !important;
+  }
+  /* Kill blur() filters on mobile — each creates a separate GPU texture layer
+     consuming ~4× the pixel area in VRAM. With 7+ reveal sections + transitions,
+     this saturates mobile GPUs (Adreno/Mali) causing 15-20 fps scroll jank.
+     The fade + slide-up animation alone is sufficient for mobile viewports. */
+  .reveal-up {
+    filter: none !important;
+    will-change: opacity, transform;
+  }
+  .reveal-up.is-visible {
+    will-change: auto;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 200;
+  background: #0b2238;
+  color: #f8f6f1;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.038;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+  contain: strict;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.island-nav {
+  background: rgba(248, 246, 241, 0.18);
+  border: 1px solid rgba(248, 246, 241, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 18px 50px -24px rgba(11, 34, 56, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.island-nav.is-light {
+  background: rgba(248, 246, 241, 0.82);
+  border-color: rgba(38, 49, 58, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 16px 40px -28px rgba(11, 34, 56, 0.28);
+}
+
+.island-nav.is-scrolled-dark {
+  background: rgba(11, 34, 56, 0.88);
+  border-color: rgba(196, 154, 101, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 18px 45px -15px rgba(0, 0, 0, 0.45);
+}
+
+.bezel {
+  padding: 0.35rem;
+  border-radius: 1.75rem;
+  background: rgba(11, 34, 56, 0.045);
+  border: 1px solid rgba(38, 49, 58, 0.08);
+}
+
+.bezel-inner {
+  overflow: hidden;
+  border-radius: calc(1.75rem - 0.35rem);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.cta-island {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.75rem 0.7rem 1.35rem;
+  border-radius: 999px;
+  background: #c49a65;
+  color: #0b2238;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1), background 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cta-island:hover {
+  background: #d4af7a;
+  transform: translateY(-1px);
+}
+
+.cta-island:active {
+  transform: scale(0.98);
+}
+
+.cta-island .cta-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 34, 56, 0.12);
+  transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cta-island:hover .cta-icon {
+  transform: translate(2px, -1px) scale(1.05);
+}
+
+.cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: transparent;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1), background 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cta-ghost:hover {
+  background: rgba(196, 154, 101, 0.12);
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(2.4rem);
+  filter: blur(8px);
+  will-change: opacity, transform, filter;
+  transition:
+    opacity 0.9s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.9s cubic-bezier(0.32, 0.72, 0, 1),
+    filter 0.9s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: none !important;
+  will-change: auto;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 154, 101, 0.35);
+  background: rgba(196, 154, 101, 0.12);
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #0b2238;
+}
+
+.menu-lines {
+  display: block;
+  position: relative;
+  width: 20px;
+  height: 13px;
+}
+
+.menu-lines span {
+  position: absolute;
+  left: 0;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 99px;
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), width 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.4s ease;
+}
+
+.menu-lines span:nth-child(1) {
+  top: 0;
+  width: 20px;
+}
+
+.menu-lines span:nth-child(2) {
+  top: 5.5px;
+  width: 14px;
+}
+
+.menu-lines span:nth-child(3) {
+  top: 11px;
+  width: 18px;
+}
+
+button:hover .menu-lines span:nth-child(2) {
+  width: 20px;
+}
+
+
+.hero-scroll-line {
+  width: 1px;
+  height: 3.2rem;
+  background: linear-gradient(to bottom, #c49a65, transparent);
+  animation: scrollPulse 2.4s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.85; }
+  50% { transform: scaleY(1.18); opacity: 1; }
 }
 
 /* Lenis Smooth Scroll Recommended Rules */
@@ -83,6 +324,26 @@ html.lenis, html.lenis body {
 :focus-visible {
   outline: 1.5px solid var(--champagne-gold);
   outline-offset: 3px;
+}
+
+/* Ensure brand logos and header/footer logo links NEVER receive an outline, border, or ring */
+header a[href="/"],
+footer a[href="/"],
+nav a[href="/"],
+.logo-link,
+a[href="/"],
+a[href="/"]:focus,
+a[href="/"]:focus-visible,
+a[href="/"] img,
+a[href="/"] img:focus,
+a[href="/"] img:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+  --tw-shadow: 0 0 #0000 !important;
 }
 
 /* Hairline utilities */
@@ -143,8 +404,9 @@ html.lenis, html.lenis body {
   perspective: 1000px;
 }
 
+.animate-marquee-left,
 .animate-marquee-left:hover {
-  animation-play-state: paused;
+  animation-play-state: running !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -199,6 +461,15 @@ html.lenis, html.lenis body {
 .nav-close-btn:hover {
   background: rgba(196, 154, 101, 0.2);
   border-color: #C49A65;
+}
+
+.fab-float {
+  animation: floatSlow 4.8s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
 }
 .menu-button-text {
   height: 1.25rem;
@@ -370,5 +641,27 @@ html.lenis, html.lenis body {
 }
 .menu-list-item:hover .nav-link-hover-bg {
   width: 100%;
+}
+
+/* Mobile-only view enhancements (Strictly zero change to desktop >= 768px) */
+@media (max-width: 767px) {
+  html, body {
+    overflow-x: clip !important;
+    max-width: 100vw !important;
+  }
+  .island-nav:not(.is-light) {
+    background: rgba(7, 18, 30, 0.85) !important;
+    border-color: rgba(212, 175, 55, 0.3) !important;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
+  .island-nav.is-light {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border-color: rgba(38, 49, 58, 0.12) !important;
+    box-shadow: 0 10px 30px -10px rgba(11, 34, 56, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
 }
 

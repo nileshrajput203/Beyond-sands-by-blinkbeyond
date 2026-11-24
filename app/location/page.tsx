@@ -19,7 +19,7 @@ import { WhatsAppIcon } from "@/components/icons";
 export const metadata: Metadata = {
   title: "Location & Kelva Beach | Beyond Sands — Nearest Resort to Shitla Devi Temple",
   description:
-    "Beyond Sands is Palghar's #1 resort located directly opposite the revered Sheetla Devi Temple and just 1 min from Kelva Beach. Easy 90–120 min drive from Mumbai & 5 km from Kelve Road Station. Complete route & sightseeing guide.",
+    "Beyond Sands is Palghar's #1 resort located directly opposite the revered Sheetla Devi Temple and a 2-minute walk (290 meters) from Kelva Beach. Easy 2 hours drive from Mumbai & 5 km from Kelve Road Station. Complete route & sightseeing guide.",
   keywords: [
     "resort nearest to shitla devi temple",
     "resort opposite shitla devi temple kelva",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Location & Kelva Beach · Beyond Sands Resort Palghar",
     description:
-      "Nearest resort to Sheetla Devi Temple (0 mins) and Kelva Beach (1 min). Discover Palghar's top coastal sanctuary.",
+      "Nearest resort to Sheetla Devi Temple (opposite) and Kelva Beach (2-minute walk / 290m). Discover Palghar's top coastal sanctuary.",
     images: [{ url: "/assets/location/location-drone-shitlamata.jpg" }],
   },
 };
@@ -47,9 +47,9 @@ const DISTANCE_METRICS = [
   },
   {
     spot: "Kelva Beach Shoreline",
-    distance: "1-Minute Peaceful Walk",
-    detail: "150 meters from our gate. Walk through casuarina groves onto pristine golden sand and calm Arabian Sea waves.",
-    badge: "150 Meters",
+    distance: "2-Minute Walk (290 meters)",
+    detail: "290 meters from our gate. Walk through casuarina groves onto pristine golden sand and calm Arabian Sea waves.",
+    badge: "290 Meters",
   },
   {
     spot: "Kelve Road Station",
@@ -104,7 +104,7 @@ const LOCAL_ATTRACTIONS = [
     tag: "Coastal Flora · Photography Haven",
     image: "/assets/location/location-surroundings-beach.webp",
     desc: "Kilometers of tall evergreen casuarina trees hugging the beach coastline, creating shaded trails and amber golden-hour sunbeams.",
-    dist: "150 meters (1 min walk from gate)",
+    dist: "290 meters (2-minute walk from gate)",
   },
 ];
 
@@ -166,14 +166,14 @@ export default function LocationPage() {
               "streetAddress": "Opposite Shitla Devi Temple, Kelve Beach Road",
               "addressLocality": "Palghar",
               "addressRegion": "Maharashtra",
-              "postalCode": "401404",
+              "postalCode": "401401",
               "addressCountry": "IN"
             }
           }),
         }}
       />
 
-      <main className="min-h-screen bg-warm-ivory text-charcoal pt-28 sm:pt-36 pb-20 select-none">
+      <div className="min-h-[100dvh] bg-transparent text-charcoal pt-32 sm:pt-36 pb-20 select-none">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           
           {/* Breadcrumbs */}
@@ -194,7 +194,7 @@ export default function LocationPage() {
                 LOCATION &amp; KELVA BEACH
               </h1>
               <p className="font-sans text-base sm:text-lg text-charcoal/75 font-light mt-4 leading-relaxed">
-                Beyond Sands holds the most enviable location in Palghar district: situated <strong>directly opposite the ancient Sheetla Devi Temple</strong> and just a <strong>1-minute walk (150m) from Kelva Beach</strong>. Enjoy immediate access to sacred morning prayers, fresh sea breeze, and historic coastal landmarks.
+                Beyond Sands holds the most enviable location in Palghar district: situated <strong>directly opposite the ancient Sheetla Devi Temple</strong> and just a <strong>2-minute walk (290 meters) from Kelva Beach</strong>. Enjoy immediate access to sacred morning prayers, fresh sea breeze, and historic coastal landmarks.
               </p>
             </div>
 
@@ -409,7 +409,7 @@ export default function LocationPage() {
           </section>
 
         </div>
-      </main>
+      </div>
 
       <Footer />
     </>

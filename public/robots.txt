@@ -1,4 +1,36 @@
+# Technical SEO, AEO & GEO Crawl Directives for Beyond Sands Pure Veg Resort
+# https://www.beyondsands.in
+
+# Explicit Allow Directives for AI Engines & Search Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
 User-agent: *
 Allow: /
 
+# Sitemap Index Reference
 Sitemap: https://www.beyondsands.in/sitemap.xml

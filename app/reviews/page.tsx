@@ -76,7 +76,7 @@ const VERIFIED_REVIEWS: ReviewItem[] = [
     hasLocalGuideBadge: true,
     avatarBg: "bg-[#E57373]",
     content:
-      "We had a wonderful stay at this beach resort in Kelva Beach. The rooms, bathrooms, dining area, swimming pool, and the entire resort premises were extremely clean and well maintained. The staff was very attentive, polite, and always ready to help. One of the highlights was the pure vegetarian food — delicious, fresh, and full of taste. Perfect location, 1-minute walk from the beach and very close to Shitla Devi Temple. A special thanks to the honest and caring staff who couriered my forgotten mobile charger back to me.",
+      "We had a wonderful stay at this beach resort in Kelva Beach. The rooms, bathrooms, dining area, swimming pool, and the entire resort premises were extremely clean and well maintained. The staff was very attentive, polite, and always ready to help. One of the highlights was the pure vegetarian food — delicious, fresh, and full of taste. Perfect location, 2-minute walk (290m) from the beach and very close to Shitla Devi Temple. A special thanks to the honest and caring staff who couriered my forgotten mobile charger back to me.",
   },
   {
     id: "rev-rishab",
@@ -155,14 +155,14 @@ export default function ReviewsPage() {
               "streetAddress": "Opposite Shitla Devi Temple, Kelve Beach Road",
               "addressLocality": "Palghar",
               "addressRegion": "Maharashtra",
-              "postalCode": "401404",
+              "postalCode": "401401",
               "addressCountry": "IN"
             }
           }),
         }}
       />
 
-      <main className="min-h-screen bg-warm-ivory text-charcoal pt-28 sm:pt-36 pb-20 select-none">
+      <div className="min-h-[100dvh] bg-transparent text-charcoal pt-32 sm:pt-36 pb-20 select-none">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           
           {/* Breadcrumbs */}
@@ -244,7 +244,7 @@ export default function ReviewsPage() {
                 Closest to Sheetla Devi Temple
               </h3>
               <p className="font-sans text-xs text-charcoal/70 font-light leading-relaxed">
-                Guests love the effortless 30-second walk to morning temple aarti, paired with a 1-minute stroll to the serene Kelva Beach sand.
+                Guests love the effortless 30-second walk to morning temple aarti, paired with a 2-minute walk (290 meters) to the serene Kelva Beach sand.
               </p>
             </div>
 
@@ -365,7 +365,7 @@ export default function ReviewsPage() {
           </section>
 
         </div>
-      </main>
+      </div>
 
       <Footer />
     </>

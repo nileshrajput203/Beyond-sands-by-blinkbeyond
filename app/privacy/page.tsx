@@ -9,16 +9,16 @@ export const metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <div className="pt-32 pb-20 px-6 sm:px-12 max-w-4xl mx-auto select-none font-sans">
+      <div className="pt-24 sm:pt-32 pb-20 px-4 sm:px-8 max-w-4xl mx-auto select-none font-sans">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-champagne-gold hover:text-deep-navy transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-champagne-gold hover:text-deep-navy transition-colors mb-6 sm:mb-8"
         >
           <span>←</span>
           <span>Back to Home</span>
         </Link>
 
-        <h1 className="font-display text-4xl sm:text-5xl text-deep-navy font-normal mb-3">
+        <h1 className="font-display text-2xl sm:text-5xl text-deep-navy font-normal mb-3">
           Privacy Policy
         </h1>
         <p className="text-xs text-charcoal/60 uppercase tracking-wider mb-8">
@@ -27,7 +27,7 @@ export default function PrivacyPage() {
 
         <div className="space-y-6 text-sm text-charcoal/80 leading-relaxed font-light mb-20">
           <p>
-            Beyond Sands Resort (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the boutique resort property situated opposite Shitladevi Temple, Kelve Road, Kelve, Palghar 401404, Maharashtra. We respect your privacy and are committed to safeguarding all personal information collected during inquiries, reservations, and stays.
+            Beyond Sands Resort (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the boutique resort property situated opposite Shitladevi Temple, Kelve Road, Kelve, Palghar 401401, Maharashtra. We respect your privacy and are committed to safeguarding all personal information collected during inquiries, reservations, and stays.
           </p>
 
           <h2 className="font-display text-xl text-deep-navy font-medium pt-4">
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
           </p>
           <div className="p-4 rounded-xl bg-warm-ivory/80 border border-charcoal/10 text-xs space-y-1 text-deep-navy font-sans">
             <p className="font-semibold">Resort Manager · Grievance Officer</p>
-            <p>Beyond Sands Resort, Opposite Shitladevi Temple, Kelve Road, Kelve, Palghar 401404, Maharashtra</p>
+            <p>Beyond Sands Resort, Opposite Shitladevi Temple, Kelwa Beach Road, Kelwa, Palghar - 401401, Maharashtra</p>
             <p>Email: <a href="mailto:beyondsandsresort@gmail.com" className="text-champagne-gold font-medium underline">beyondsandsresort@gmail.com</a></p>
             <p>Telephone: <a href="tel:+919923895055" className="text-champagne-gold font-medium">+91 99238 95055</a></p>
             <p className="text-charcoal/60 pt-1">Response Timeline: Within 48 business hours</p>

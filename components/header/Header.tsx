@@ -1,12 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef, type MouseEvent } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { HamburgerIcon } from "../icons";
-import { scrollToSection, setPendingHash } from "@/lib/scroll-nav";
 
 const NavigationDrawer = dynamic(
   () => import("./NavigationDrawer").then((m) => m.NavigationDrawer),
@@ -22,164 +20,122 @@ export function Header() {
   const isHomePage = pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [isDarkTheme, setIsDarkTheme] = useState(isHomePage); // true = Warm Ivory text (over hero/dark), false = Deep Navy text
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const lastScrollYRef = useRef(0);
-  const router = useRouter();
-
-  const handleRoomsClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (isHomePage) {
-      scrollToSection("rooms-section");
-    } else {
-      setPendingHash("rooms-section");
-      router.push("/");
-    }
-  };
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    setIsDarkTheme(isHomePage);
-
-    // Cache section references (present only on the home page)
-    const foodElem = document.getElementById("food-section");
-    const roomsElem = document.getElementById("rooms-section");
-
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Header hide on scroll down, reveal on scroll up
-      if (currentScrollY > 120) {
-        if (currentScrollY > lastScrollYRef.current && !isMenuOpen && !isEnquiryOpen) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
-        }
-      } else {
-        setIsVisible(true);
-      }
-      lastScrollYRef.current = currentScrollY;
-      setLastScrollY(currentScrollY);
-
-      // On subpages with light background
-      if (!isHomePage) {
-        setIsDarkTheme(false);
-        return;
-      }
-
-      // On home page, header is always positioned over dark canopy video or deep-navy glass
-      setIsDarkTheme(true);
+      setIsScrolled(window.scrollY > 20);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMenuOpen, isEnquiryOpen, isHomePage]);
+  }, []);
 
+  const isDarkTheme = isHomePage;
   const textColorClass = isDarkTheme ? "text-warm-ivory" : "text-deep-navy";
-  const logoSrc = isDarkTheme ? "/assets/brand/beyond-sands-logo-dark.png" : "/assets/brand/beyond-sands-logo-light.png";
-  const headerBgClass = isHomePage
-    ? lastScrollY > 40
-      ? "bg-deep-navy/80 backdrop-blur-md border-b border-warm-ivory/10 shadow-sm"
-      : "bg-transparent"
-    : lastScrollY > 40
-    ? "bg-warm-ivory/95 backdrop-blur-md border-b border-charcoal/10 shadow-xs"
-    : "bg-transparent";
+  const logoSrc = isDarkTheme
+    ? "/assets/header/beyond-sands-logo-dark.png"
+    : "/assets/header/beyond-sands-logo-light.png";
+  const islandTone = isHomePage
+    ? isScrolled
+      ? "is-scrolled-dark shadow-2xl"
+      : ""
+    : "is-light shadow-md";
+
+  const navLink =
+    `hidden md:inline-flex font-sans text-[11px] uppercase tracking-[0.16em] font-medium relative group py-1 ${textColorClass} transition-colors duration-500`;
 
   return (
     <>
-      {/* Top Scrim Gradient ONLY over Hero on Home Page for legibility */}
-      {isHomePage && (
-        <div
-          className={`fixed top-0 left-0 right-0 h-28 bg-gradient-to-b from-deep-navy/40 to-transparent pointer-events-none z-40 transition-opacity duration-500 ${
-            lastScrollY > 100 ? "opacity-0" : "opacity-100"
-          }`}
-        />
-      )}
-
-      <header
-        role="banner"
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform ${
-          isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-        } ${headerBgClass}`}
+      <div
+        className={`fixed top-0 left-0 right-0 z-50 px-3 sm:px-5 transition-all duration-300 ease-luxury ${
+          isScrolled ? "pt-2 sm:pt-2.5" : "pt-3 sm:pt-4"
+        }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 h-24 flex items-center justify-between">
-          {/* LEFT GROUP: ABOUT US, BOOK DIRECTLY */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="/about"
-              className={`font-sans text-[11px] uppercase tracking-wider font-medium relative group py-1 ${textColorClass} transition-colors duration-300`}
-            >
-              <span>About Us</span>
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-champagne-gold transition-all duration-300 group-hover:w-full" />
+        <header
+          role="banner"
+          className={`island-nav ${islandTone} max-w-6xl mx-auto h-[3.75rem] sm:h-[4.5rem] px-4 sm:px-8 md:px-10 flex items-center justify-between transition-all duration-300`}
+        >
+          {/* Desktop Left Primary Nav */}
+          <nav className="hidden md:flex flex-1 items-center justify-start gap-8 lg:gap-10" aria-label="Primary">
+            <Link href="/about" className={navLink}>
+              <span>About</span>
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-champagne-gold transition-all duration-500 group-hover:w-full" />
             </Link>
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-quick-enquiry"))}
+              className={`${navLink} cursor-pointer`}
+            >
+              <span>Book</span>
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-champagne-gold transition-all duration-500 group-hover:w-full" />
+            </button>
+          </nav>
 
-            <Link
-              href="/booking"
-              className={`font-sans text-[11px] uppercase tracking-wider font-medium relative group py-1 ${textColorClass} transition-colors duration-300`}
+          {/* Mobile Left Quick Action: Instant Room & Rate Enquiry Popup */}
+          <div className="flex-1 flex md:hidden items-center justify-start">
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-quick-enquiry"))}
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-sans text-[9.5px] uppercase tracking-[0.16em] font-medium shadow-xs active:scale-95 transition-all cursor-pointer ${
+                isDarkTheme
+                  ? "bg-[#D4AF37]/20 border border-[#D4AF37]/50 text-[#F5DEB3] hover:text-white"
+                  : "bg-deep-navy/5 border border-deep-navy/15 text-deep-navy hover:bg-deep-navy/10"
+              }`}
             >
-              <span>Book Directly</span>
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-champagne-gold transition-all duration-300 group-hover:w-full" />
-            </Link>
+              <span className={`w-1.5 h-1.5 rounded-full ${isDarkTheme ? "bg-[#D4AF37]" : "bg-[#C49A65]"} animate-pulse`} />
+              <span>Book</span>
+            </button>
           </div>
 
-          {/* CENTRE: BEYOND SANDS LOGO */}
-          <div className="flex-1 md:flex-initial flex justify-center">
-            <Link href="/" className="relative block w-32 sm:w-36 h-12 transition-transform duration-300 hover:scale-105">
+          {/* Center Brand Logo: Perfectly centered on mobile and desktop */}
+          <div className="flex-initial flex items-center justify-center shrink-0 py-1">
+            <Link
+              href="/"
+              className="relative block w-32 sm:w-44 md:w-52 h-11 sm:h-14 md:h-[3.85rem] transition-transform duration-500 ease-luxury hover:scale-[1.03] outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0"
+            >
               <Image
                 src={logoSrc}
                 alt="Beyond Sands Hotels & Resorts"
                 fill
                 priority
-                sizes="(min-width: 640px) 144px, 128px"
-                className="object-contain transition-opacity duration-300"
+                sizes="(min-width: 768px) 208px, (min-width: 640px) 176px, 128px"
+                className="object-contain object-center outline-none"
               />
             </Link>
           </div>
 
-          {/* RIGHT GROUP: ROOMS & SUITES, CONTACT US, HAMBURGER */}
-          <div className="flex items-center gap-6 sm:gap-8">
-            <Link
-              href="/rooms"
-              className={`hidden md:inline-block font-sans text-[11px] uppercase tracking-wider font-medium relative group py-1 ${textColorClass} transition-colors duration-300`}
-            >
-              <span>Rooms &amp; Suites</span>
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-champagne-gold transition-all duration-300 group-hover:w-full" />
+          {/* Right Links & Menu Trigger */}
+          <div className="flex-1 flex items-center justify-end gap-6 sm:gap-8">
+            <Link href="/rooms" className={navLink}>
+              <span>Rooms</span>
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-champagne-gold transition-all duration-500 group-hover:w-full" />
+            </Link>
+            <Link href="/contact" className={navLink}>
+              <span>Contact</span>
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-champagne-gold transition-all duration-500 group-hover:w-full" />
             </Link>
 
-            <Link
-              href="/contact"
-              className={`hidden md:inline-block font-sans text-[11px] uppercase tracking-wider font-medium relative group py-1 ${textColorClass} transition-colors duration-300`}
-            >
-              <span>Contact Us</span>
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-champagne-gold transition-all duration-300 group-hover:w-full" />
-            </Link>
-
-            {/* Architectural 3-Line Hamburger */}
             <button
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open full site menu"
-              className={`p-2 ${textColorClass} hover:text-champagne-gold transition-colors duration-300 cursor-pointer`}
+              className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-current/20 hover:border-champagne-gold hover:text-champagne-gold flex items-center justify-center shrink-0 ${textColorClass} transition-all duration-500 ease-luxury cursor-pointer ml-1 sm:ml-2`}
             >
-              <HamburgerIcon size={26} strokeWidth={1.25} />
+              <span className="menu-lines" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
             </button>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
 
-      {/* Full-Screen 12-Page Navigation Drawer (lazy chunk on first open) */}
       {isMenuOpen && (
-        <NavigationDrawer
-          isOpen={isMenuOpen}
-          onClose={() => setIsMenuOpen(false)}
-        />
+        <NavigationDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       )}
 
-      {/* Refined Enquiry Slide-over (lazy chunk on first open) */}
       {isEnquiryOpen && (
-        <EnquiryDrawer
-          isOpen={isEnquiryOpen}
-          onClose={() => setIsEnquiryOpen(false)}
-        />
+        <EnquiryDrawer isOpen={isEnquiryOpen} onClose={() => setIsEnquiryOpen(false)} />
       )}
     </>
   );

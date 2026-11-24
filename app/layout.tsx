@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Montserrat } from "next/font/google";
+import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScroll";
 import { SkySystem } from "@/components/sky/SkySystem";
@@ -8,6 +8,8 @@ import { WhatsAppFab } from "@/components/hero/WhatsAppFab";
 import { InstagramFab } from "@/components/hero/InstagramFab";
 import { BackToTop } from "@/components/ui/BackToTop";
 import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
+import { WaterPreloader } from "@/components/ui/WaterPreloader";
+import { QuickEnquiryModal, QuickEnquiryFloatingTrigger } from "@/components/ui/QuickEnquiryModal";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -16,22 +18,36 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const montserrat = Montserrat({
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Beyond Sands - Coastal calm at the blue hour",
+  title: "Beyond Sands Pure Veg Resort | Best Resort in Kelva Beach, Palghar",
   description:
-    "Wake to palms, wind, and the sea's quiet hush. Premium coastal resort with private verandahs and curated local experiences.",
-  authors: [{ name: "Beyond Sands Resort" }],
+    "Official website of Beyond Sands Pure Veg Resort, Kelva Beach, Palghar (Pin 401401). 100% Pure Veg & Jain dining, 2-minute walk (290m) to beach, opposite Shri Shitladevi Temple, 40x25ft swimming pool with lifeguard, and family AC rooms 2 hours from Mumbai.",
+  authors: [{ name: "Beyond Sands Pure Veg Resort" }],
   metadataBase: new URL("https://www.beyondsands.in"),
   alternates: {
     canonical: "/",
   },
+  keywords: [
+    "best resort in palghar",
+    "kelva beach resort",
+    "kelwa resort",
+    "kelve resort",
+    "Beyond Sands Pure Veg Resort",
+    "pure veg resort palghar",
+    "jain resort near mumbai",
+    "kelva beach resort with swimming pool",
+    "one day picnic resort palghar",
+    "resort near shitladevi temple kelva",
+    "family resort in palghar near mumbai",
+    "ac dormitory in kelve",
+  ],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -41,17 +57,17 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Beyond Sands - Coastal calm at the blue hour",
+    title: "Beyond Sands Pure Veg Resort | Best Resort in Kelva Beach, Palghar",
     description:
-      "Wake to palms, wind, and the sea's quiet hush. Premium coastal resort with private verandahs and curated local experiences.",
+      "100% Pure Veg & Jain resort in Kelva Beach, Palghar (Pin 401401). Opposite Shri Shitladevi Temple, 2-min walk (290m) to Kelva Beach, 40x25ft pool with lifeguard, and family AC rooms.",
     url: "https://www.beyondsands.in",
-    siteName: "Beyond Sands Resort",
+    siteName: "Beyond Sands Pure Veg Resort",
     images: [
       {
-        url: "/assets/hero/hero-canopy-poster.jpg",
+        url: "/assets/hero/hero-desktop-poster.jpg",
         width: 1600,
         height: 1200,
-        alt: "Beyond Sands Resort Canopy Overview",
+        alt: "Beyond Sands Pure Veg Resort Kelva Beach Palghar",
       },
     ],
     locale: "en_IN",
@@ -59,30 +75,40 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Beyond Sands - Coastal calm at the blue hour",
+    title: "Beyond Sands Pure Veg Resort | Best Resort in Kelva Beach, Palghar",
     description:
-      "Wake to palms, wind, and the sea's quiet hush. Premium coastal resort with private verandahs and curated local experiences.",
-    images: ["/assets/hero/hero-canopy-poster.jpg"],
+      "100% Pure Veg & Jain resort in Kelva Beach, Palghar (Pin 401401). 2-min walk (290m) to beach, opposite Shri Shitladevi Temple, 40x25ft pool, and family AC rooms.",
+    images: ["/assets/hero/hero-desktop-poster.jpg"],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Resort",
-  "name": "Beyond Sands Resort",
+  "@type": ["Resort", "LodgingBusiness"],
+  "name": "Beyond Sands Pure Veg Resort",
+  "alternateName": [
+    "Beyond Sands Resort",
+    "Beyond Sands Kelva",
+    "Beyond Sands Palghar",
+    "Beyond Sands Pure Veg Resort Kelwa Beach"
+  ],
+  "url": "https://www.beyondsands.in/",
+  "telephone": "+91 99238 95055",
+  "email": "beyondsandsresort@gmail.com",
+  "priceRange": "₹4,500 - ₹6,500",
+  "servesCuisine": ["Indian", "Vegetarian", "Jain", "Gujarati", "Maharashtrian"],
   "image": [
-    "https://www.beyondsands.in/assets/hero/hero-canopy-poster.jpg",
+    "https://www.beyondsands.in/assets/hero/hero-desktop-poster.jpg",
     "https://www.beyondsands.in/assets/rooms/garden-view-main.jpg",
     "https://www.beyondsands.in/assets/location/location-drone-shitlamata.jpg"
   ],
-  "description": "Wake to palms, wind, and the sea's quiet hush. Premium coastal resort with private verandahs and curated local experiences.",
-  "telephone": "+91-99238-95055",
+  "description": "Beyond Sands Pure Veg Resort is a premier 100% Pure Vegetarian & Jain coastal retreat in Kelva Beach (Kelwa), Palghar (Pin: 401401). Situated opposite Shri Shitladevi Temple and a 2-minute walk (290 meters) from Kelva Beach, offering a 40x25ft swimming pool with lifeguard, rain dance, AC family rooms, and group dormitories 2 hours from Mumbai.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Opposite Shitladevi temple Kelve Road",
+    "streetAddress": "Survey No. 1000, 1709, 1710, Shitladevi Road, Opposite Shri Shitladevi Temple, Near Kelva Beach",
     "addressLocality": "Kelva, Palghar",
-    "postalCode": "401404",
     "addressRegion": "Maharashtra",
+    "postalCode": "401401",
     "addressCountry": "IN"
   },
   "geo": {
@@ -90,14 +116,35 @@ const jsonLd = {
     "latitude": 19.612193,
     "longitude": 72.729605
   },
-  "url": "https://www.beyondsands.in",
-  "priceRange": "₹4,500 - ₹7,000",
-  "checkinTime": "12:00:00",
-  "checkoutTime": "10:00:00",
+  "areaServed": [
+    "Kelva Beach",
+    "Kelwa Beach",
+    "Kelve",
+    "Palghar",
+    "Mumbai",
+    "Thane",
+    "Vasai",
+    "Virar"
+  ],
+  "sameAs": [
+    "https://www.instagram.com/beyondsands/",
+    "https://en.wikipedia.org/wiki/Kelwa_Beach"
+  ],
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "100% Pure Vegetarian Kitchen", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Strict Jain Food (No Onion/Garlic)", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "40x25ft Swimming Pool with Lifeguard", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Rain Dance Arena", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "15,000 sq ft Wedding Lawn", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Free Private Parking", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "290m Walk to Kelva Beach", "value": true }
+  ],
+  "checkinTime": "13:00",
+  "checkoutTime": "11:00",
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "150"
+    "ratingValue": "4.2",
+    "reviewCount": "40"
   }
 };
 
@@ -107,33 +154,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased relative min-h-screen text-charcoal bg-transparent selection:bg-champagne-gold selection:text-deep-navy">
+      <body className="antialiased relative min-h-[100dvh] text-charcoal bg-transparent selection:bg-champagne-gold selection:text-deep-navy">
+        <WaterPreloader />
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <SmoothScrollProvider>
-          {/* Awwwards Subtle Top Scroll Progress Line */}
           <ScrollProgressBar />
-
-          {/* Global Scroll-Linked Sky Background */}
           <SkySystem />
-
-          {/* Transparent Adaptive Header */}
           <Header />
-
-          {/* Main Website Flow */}
-          <main role="main" className="relative z-10 w-full overflow-hidden">
+          <main id="main-content" role="main" className="relative z-10 w-full max-w-full overflow-x-clip md:overflow-visible">
             {children}
           </main>
+          <div className="noise-overlay hidden md:block" aria-hidden="true" />
 
           {/* Floating WhatsApp Concierge on Right, Instagram on Left & Back to Top */}
           <InstagramFab />
           <WhatsAppFab />
+          <QuickEnquiryFloatingTrigger />
           <BackToTop />
+          <QuickEnquiryModal />
         </SmoothScrollProvider>
       </body>
     </html>

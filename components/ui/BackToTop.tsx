@@ -1,50 +1,55 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowUp } from "lucide-react";
 import { scrollToY } from "@/lib/scroll-nav";
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const circleRef = useRef<SVGCircleElement>(null);
+
+  // SVG circle calculations for 44px container (r = 18)
+  const radius = 18;
+  const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (ticking) return;
+      ticking = true;
 
-      // Reveal button after scrolling past 350px
-      if (currentScrollY > 350) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      requestAnimationFrame(() => {
+        ticking = false;
+        const currentScrollY = window.scrollY;
+        const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-      // Compute scroll percentage for progress indicator
-      if (totalScrollHeight > 0) {
-        const progress = Math.min(100, Math.max(0, (currentScrollY / totalScrollHeight) * 100));
-        setScrollProgress(progress);
-      }
+        // Reveal button after scrolling past 350px (only set state when boolean changes)
+        const visible = currentScrollY > 350;
+        setIsVisible((prev) => (prev !== visible ? visible : prev));
+
+        // Directly update SVG circle stroke without triggering React component re-renders
+        if (circleRef.current && totalScrollHeight > 0) {
+          const progress = Math.min(100, Math.max(0, (currentScrollY / totalScrollHeight) * 100));
+          const offset = circumference - (progress / 100) * circumference;
+          circleRef.current.style.strokeDashoffset = `${offset}`;
+        }
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [circumference]);
 
   const handleClick = () => {
     scrollToY(0, 1.2);
   };
 
-  // SVG circle calculations for 44px container (r = 18)
-  const radius = 18;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (scrollProgress / 100) * circumference;
-
   return (
     <div
-      className={`fixed bottom-[90px] right-6 sm:bottom-[90px] sm:right-6 z-[60] transition-all duration-400 ease-out ${
+      className={`fixed bottom-[72px] right-3 sm:bottom-[92px] sm:right-6 z-[60] transition-all duration-400 ease-out ${
         isVisible
           ? "opacity-100 translate-y-0 pointer-events-auto"
           : "opacity-0 translate-y-4 pointer-events-none"
@@ -55,7 +60,7 @@ export function BackToTop() {
         type="button"
         onClick={handleClick}
         aria-label="Back to top"
-        className="relative group w-12 h-12 rounded-full bg-deep-navy/90 hover:bg-deep-navy text-warm-ivory backdrop-blur-md border border-champagne-gold/30 shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer hover:border-champagne-gold"
+        className="relative group w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-deep-navy/90 hover:bg-deep-navy text-warm-ivory backdrop-blur-md border border-champagne-gold/30 shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer hover:border-champagne-gold"
       >
         {/* Circular SVG Scroll Progress Ring */}
         <svg
@@ -74,6 +79,7 @@ export function BackToTop() {
           />
           {/* Active gold progress stroke */}
           <circle
+            ref={circleRef}
             cx="22"
             cy="22"
             r={radius}
@@ -81,9 +87,9 @@ export function BackToTop() {
             stroke="#C49A65"
             strokeWidth="2.2"
             strokeDasharray={circumference}
-            strokeDashoffset={strokeDashoffset}
+            strokeDashoffset={circumference}
             strokeLinecap="round"
-            className="transition-all duration-150"
+            className=""
           />
         </svg>
 

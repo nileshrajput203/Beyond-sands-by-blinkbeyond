@@ -1,4 +1,8 @@
 import { Hero } from "@/components/hero/Hero";
+import { IntroTrustSection } from "@/components/home/IntroTrustSection";
+import { HeroTideTransition } from "@/components/hero/HeroTideTransition";
+import { KineticMarquee } from "@/components/ui/KineticMarquee";
+import { Reveal } from "@/components/ui/Reveal";
 import { RoomsRail } from "@/components/rooms/RoomsRail";
 import { Location } from "@/components/location/Location";
 import { EventsSection } from "@/components/events/EventsSection";
@@ -12,34 +16,31 @@ import { Footer } from "@/components/footer/Footer";
 export default function HomePage() {
   return (
     <>
-      {/* 8.2 Hero Video Section */}
-      <Hero />
-
-      {/* 8.3 Rooms & Suites (Pinned Horizontal Scroll Rail) */}
+      <HeroTideTransition
+        hero={<Hero />}
+        intro={<IntroTrustSection />}
+      />
+      <KineticMarquee />
       <RoomsRail />
-
-      {/* 8.5 Location Bento Grid (Drone opposite Shitla Mata Temple + Map) */}
-      <Location />
-
-      {/* Events & Wedding Organisation Section */}
-      <EventsSection />
-
-      {/* Reel Format Carousel Travelling Right-to-Left */}
-      <ReelsCarousel />
-
-      {/* 8.6 Food / Dining (Diagonal Staggered Culinary Showcase) */}
+      <Reveal>
+        <Location />
+      </Reveal>
+      <Reveal>
+        <EventsSection />
+      </Reveal>
+      <Reveal>
+        <ReelsCarousel />
+      </Reveal>
       <Food />
-
-      {/* 8.8 Resort Gallery & Lightbox */}
-      <Gallery />
-
-      {/* Property Details & FAQ Section */}
-      <PropertyFaqSection />
-
-      {/* Verified Google Reviews & Rating */}
-      <GoogleReviews />
-
-      {/* 8.9 Monumental Editorial Footer */}
+      <Reveal>
+        <Gallery />
+      </Reveal>
+      <Reveal>
+        <PropertyFaqSection />
+      </Reveal>
+      <Reveal>
+        <GoogleReviews />
+      </Reveal>
       <Footer />
     </>
   );

@@ -23,7 +23,7 @@ export default function BookingPage() {
     name: "",
     phone: "",
     email: "",
-    roomType: "Garden View Deluxe Verandah (₹3,499/night)",
+    roomType: "Garden-View AC Family Room (2–4 Guests)",
     checkIn: "",
     checkOut: "",
     adults: "2",
@@ -58,7 +58,7 @@ export default function BookingPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-warm-ivory text-charcoal pt-28 sm:pt-36 pb-20 select-none">
+      <div className="min-h-[100dvh] bg-transparent text-charcoal pt-32 sm:pt-36 pb-20 select-none">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           
           {/* Breadcrumbs */}
@@ -75,7 +75,7 @@ export default function BookingPage() {
                 <span>Best Rate Guarantee · Direct Perks</span>
               </div>
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal text-deep-navy tracking-tight leading-[1.1]">
-                BOOK YOUR SANCTUARY STAY
+                Book your sanctuary stay
               </h1>
               <p className="font-sans text-base sm:text-lg text-charcoal/75 font-light mt-4 leading-relaxed">
                 Reserve directly with Beyond Sands, <strong>Palghar's #1 Best Resort</strong> located <strong>directly opposite Sheetla Devi Temple</strong> and <strong>1 minute from Kelva Beach</strong>. Direct bookings include complimentary coastal breakfast, preferred room allocations, and flexible date adjustments.
@@ -168,10 +168,12 @@ export default function BookingPage() {
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl bg-warm-ivory/60 border border-charcoal/20 text-charcoal font-sans text-sm focus:outline-none focus:border-champagne-gold transition-colors"
                     >
-                      <option value="Garden View Deluxe Verandah (₹3,499/night)">Garden View Deluxe Verandah (₹3,499/night)</option>
-                      <option value="Pool View Executive Suite (₹3,999/night)">Pool View Executive Suite (₹3,999/night)</option>
-                      <option value="Couple Romantic Coastal Nook (₹3,299/night)">Couple Romantic Coastal Nook (₹3,299/night)</option>
-                      <option value="Grand Family Dormitory (₹6,999/night for up to 6)">Grand Family Dormitory (₹6,999/night for up to 6)</option>
+                      <option value="Garden-View AC Family Room (2–4 Guests)">Garden-View AC Family Room (2–4 Guests)</option>
+                      <option value="Pool-View AC Deluxe Room (2–4 Guests)">Pool-View AC Deluxe Room (2–4 Guests)</option>
+                      <option value="Couple Room in Kelve Beach (2–3 Guests)">Couple Room in Kelve Beach (2–3 Guests)</option>
+                      <option value="AC Group Dormitory in Kelve Beach (6–15 Guests)">AC Group Dormitory in Kelve Beach (6–15 Guests)</option>
+                      <option value="Garden-View AC Family Suite (4–6 Guests)">Garden-View AC Family Suite (4–6 Guests)</option>
+                      <option value="One-Day Picnic Package (10 AM – 5 PM)">One-Day Picnic Package (10 AM – 5 PM)</option>
                     </select>
                   </div>
                 </div>
@@ -364,7 +366,7 @@ export default function BookingPage() {
           </div>
 
         </div>
-      </main>
+      </div>
 
       <Footer />
     </>

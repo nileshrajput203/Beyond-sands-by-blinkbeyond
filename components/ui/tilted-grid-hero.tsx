@@ -174,11 +174,31 @@ export function TiltedGridHero({
     return () => ro.disconnect();
   }, [tileHeight, aspectRatio, gap, bend]);
 
-  // Fetch every image up front. A tile picks up its next one just before
-  // it comes back into view, too late to start loading it then.
+  const [isInView, setIsInView] = React.useState(false);
+
   React.useEffect(() => {
-    for (const { src } of images) new Image().src = src;
-  }, [images]);
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "400px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Fetch images only once the gallery section is near or in view
+  React.useEffect(() => {
+    if (!isInView) return;
+    for (const { src } of images) {
+      const img = new Image();
+      img.src = src;
+    }
+  }, [images, isInView]);
 
   const { columns, sweep, unit, limit } =
     layout ?? measure(1200, 560, tileHeight, aspectRatio, gap, bend);
@@ -201,18 +221,22 @@ export function TiltedGridHero({
   // loop's ends, where it wraps, fall inside that stretch, and so do tiles
   // swinging round behind the camera.
   const hide = +(((sweep - limit) / (2 * sweep || 1)) * 100).toFixed(4);
+  const share = aspectRatio / SLICES;
+  const duration = columns * speed;
   const css =
     `@keyframes ${orbit}{` +
     `from{transform:${turn(-sweep)}}to{transform:${turn(sweep)}}` +
     `0%,${hide}%,${100 - hide}%,100%{visibility:hidden}` +
     `${hide + 0.001}%,${100 - hide - 0.001}%{visibility:visible}}` +
-    // Pausing rather than removing the motion keeps the band whole: every
-    // tile is already placed by its negative delay, so it freezes as a
-    // finished still.
-    `@media(prefers-reduced-motion:reduce){.${tile}{animation-play-state:paused}}`;
+    `.${tile}{` +
+    `animation-name:${orbit};` +
+    `animation-duration:${duration}s;` +
+    `animation-timing-function:linear;` +
+    `animation-iteration-count:infinite;` +
+    `animation-play-state:${isInView ? "running" : "paused"};` +
+    `}` +
+    `@media(prefers-reduced-motion:reduce){.${tile}{animation-play-state:paused !important}}`;
 
-  const share = aspectRatio / SLICES;
-  const duration = columns * speed;
   const mask =
     fade > 0
       ? `linear-gradient(90deg,transparent,#000 ${fade}%,#000 ${
@@ -259,8 +283,7 @@ export function TiltedGridHero({
                 width: u(aspectRatio),
                 height: u(1),
                 transformStyle: "preserve-3d",
-                // Tile t starts t tiles along the loop.
-                animation: `${orbit} ${duration}s linear ${-t * speed}s infinite`,
+                animationDelay: `${-t * speed}s`,
               }}
               onAnimationIteration={(e) => {
                 // elapsedTime counts whole loops, missed events included.
@@ -299,6 +322,8 @@ export function TiltedGridHero({
                       src={img.src}
                       alt={k === 0 ? (img.alt ?? "") : ""}
                       draggable={false}
+                      loading="lazy"
+                      decoding="async"
                       className="absolute top-0 max-w-none object-cover"
                       style={{
                         left: u(-k * share),

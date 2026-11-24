@@ -36,3 +36,8 @@ yarn-error.log*
 
 # temporary scratch & build helpers
 scratch/
+*.mov
+*.bak*
+
+.vercel
+.env*

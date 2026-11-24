@@ -19,161 +19,169 @@ interface GalleryPhoto {
   id: string;
   src: string;
   title: string;
-  category: "Suites" | "Celebrations" | "Pool" | "Surroundings";
+  category: "Resort & Lawns" | "Suites & Rooms" | "Dining & Events" | "Pool & Ambiance";
   locationTag: string;
 }
 
+// 100% Authentic Photos from C:\Users\USER\Downloads\bbsands
 const GALLERY_PHOTOS: GalleryPhoto[] = [
-  // Suites & Interiors
   {
-    id: "g-1",
-    src: "/assets/rooms/garden-view-main.jpg",
-    title: "Garden View Deluxe Suite Bedroom & Verandah",
-    category: "Suites",
-    locationTag: "Suites · Ground Level",
+    id: "bbs-1",
+    src: "/assets/gallery/resort/dsc-04298.webp",
+    title: "Crystal Clear Swimming Pool with Azure Waters",
+    category: "Pool & Ambiance",
+    locationTag: "Swimming Pool",
   },
   {
-    id: "g-2",
-    src: "/assets/rooms/pool-view-main.jpg",
-    title: "Pool View Executive Suite Private Balcony",
-    category: "Suites",
-    locationTag: "Suites · First Level",
+    id: "bbs-2",
+    src: "/assets/gallery/resort/dsc-04238.webp",
+    title: "Beyond Sands Resort Architecture & Sunlit Front Facade",
+    category: "Resort & Lawns",
+    locationTag: "Resort Facade",
   },
   {
-    id: "g-3",
-    src: "/assets/rooms/couple-room-main.webp",
-    title: "Couple's Intimate Coastal Nook with Amber Mood Lighting",
-    category: "Suites",
-    locationTag: "Suites · Quiet Wing",
+    id: "bbs-3",
+    src: "/assets/gallery/resort/dsc-04239.webp",
+    title: "Lush Coastal Palms & Luxury Resort Suites",
+    category: "Resort & Lawns",
+    locationTag: "Resort Grounds",
   },
   {
-    id: "g-4",
-    src: "/assets/rooms/family-dorm-main.jpg",
-    title: "Grand Family Dormitory with Spacious Multi-Bed Layout",
-    category: "Suites",
-    locationTag: "Suites · Family Block",
+    id: "bbs-4",
+    src: "/assets/gallery/resort/dsc-04243.webp",
+    title: "Tropical Garden Pathway & Coconut Grove Grounds",
+    category: "Resort & Lawns",
+    locationTag: "Garden Pathway",
   },
   {
-    id: "g-5",
-    src: "/assets/rooms/garden-view-thumb3.jpg",
-    title: "Deluxe Bedroom with Marble Floor & Comfort Seating",
-    category: "Suites",
-    locationTag: "Suites · Interior",
+    id: "bbs-5",
+    src: "/assets/gallery/resort/dsc-04247.webp",
+    title: "Shaded Dining Verandah & Open-Air Seating",
+    category: "Dining & Events",
+    locationTag: "Dining Verandah",
   },
   {
-    id: "g-6",
-    src: "/assets/rooms/pool-view-thumb2.jpg",
-    title: "Pool View Suite King Bed & Day Lounge Setup",
-    category: "Suites",
-    locationTag: "Suites · Interior",
+    id: "bbs-6",
+    src: "/assets/gallery/resort/dsc-04248.webp",
+    title: "Pure Vegetarian Dining Pavilion & Banquet Deck",
+    category: "Dining & Events",
+    locationTag: "Dining Pavilion",
   },
   {
-    id: "g-7",
-    src: "/assets/rooms/couple-room-thumb1.webp",
-    title: "Romantic Balcony Overlooking Sparkling Azure Pool",
-    category: "Suites",
-    locationTag: "Suites · Balcony",
-  },
-  {
-    id: "g-8",
-    src: "/assets/rooms/family-dorm-thumb4.jpg",
-    title: "Spacious Multi-Bed Suite for Extended Family Gatherings",
-    category: "Suites",
-    locationTag: "Suites · Family Wing",
-  },
-
-  // Celebrations & Lawns
-  {
-    id: "g-9",
-    src: "/assets/gallery/wedding-banner.webp",
-    title: "15,000+ sq ft Celebration Lawns Decorated for Grand Wedding",
-    category: "Celebrations",
+    id: "bbs-7",
+    src: "/assets/gallery/resort/dsc-04249.webp",
+    title: "15,000 sq ft Manicured Celebration Lawns",
+    category: "Resort & Lawns",
     locationTag: "Celebration Lawns",
   },
   {
-    id: "g-10",
-    src: "/assets/gallery/banquet-hall.jpg",
-    title: "Spacious Air-Conditioned Banquet Hall for Sangeet & Receptions",
-    category: "Celebrations",
+    id: "bbs-8",
+    src: "/assets/gallery/resort/dsc-04250.webp",
+    title: "Resort Walkways Flanked by Tall Coconut Canopies",
+    category: "Resort & Lawns",
+    locationTag: "Palm Walkway",
+  },
+  {
+    id: "bbs-9",
+    src: "/assets/gallery/resort/dsc-04251.webp",
+    title: "Contemporary Coastal Architecture & Suite Verandahs",
+    category: "Resort & Lawns",
+    locationTag: "Suite Verandahs",
+  },
+  {
+    id: "bbs-10",
+    src: "/assets/gallery/resort/dsc-04253.webp",
+    title: "Expansive Green Lawns for Family Gatherings",
+    category: "Resort & Lawns",
+    locationTag: "Family Lawns",
+  },
+  {
+    id: "bbs-11",
+    src: "/assets/gallery/resort/dsc-04254.webp",
+    title: "Tropical Flora & Serene Garden Spaces",
+    category: "Resort & Lawns",
+    locationTag: "Serene Gardens",
+  },
+  {
+    id: "bbs-12",
+    src: "/assets/gallery/resort/dsc-04255.webp",
+    title: "Sunny Courtyard & Scenic Resort Grounds",
+    category: "Resort & Lawns",
+    locationTag: "Courtyard",
+  },
+  {
+    id: "bbs-13",
+    src: "/assets/gallery/resort/dsc-04256.webp",
+    title: "Sunlit Resort Estate & Deluxe Suite Terraces",
+    category: "Resort & Lawns",
+    locationTag: "Resort Estate",
+  },
+  {
+    id: "bbs-14",
+    src: "/assets/gallery/resort/dsc-04257.webp",
+    title: "Breezy Coastal Balconies & Garden Vistas",
+    category: "Resort & Lawns",
+    locationTag: "Coastal Balconies",
+  },
+  {
+    id: "bbs-15",
+    src: "/assets/gallery/resort/dsc-04322.webp",
+    title: "Deluxe Suite Warm Ambient Interiors & Comfort",
+    category: "Suites & Rooms",
+    locationTag: "Deluxe Suite",
+  },
+  {
+    id: "bbs-16",
+    src: "/assets/gallery/resort/dsc-04323.webp",
+    title: "Spacious Room Amenities & Coastal Hospitality",
+    category: "Suites & Rooms",
+    locationTag: "Suite Amenities",
+  },
+  {
+    id: "bbs-17",
+    src: "/assets/gallery/resort/dsc-04330.webp",
+    title: "Relaxing Guest Suite Layout & Natural Lighting",
+    category: "Suites & Rooms",
+    locationTag: "Guest Bedroom",
+  },
+  {
+    id: "bbs-18",
+    src: "/assets/gallery/resort/dsc-04332.webp",
+    title: "Banquet Hall & Event Celebration Spaces",
+    category: "Dining & Events",
     locationTag: "Banquet Hall",
   },
   {
-    id: "g-11",
-    src: "/assets/hero/hero-gardens.jpg",
-    title: "Lush Tropical Coconut Groves & Manicured Evening Lawns",
-    category: "Celebrations",
-    locationTag: "Garden Courtyard",
+    id: "bbs-19",
+    src: "/assets/gallery/resort/dsc-04333.webp",
+    title: "Covered Pavilion for Weddings & Receptions",
+    category: "Dining & Events",
+    locationTag: "Wedding Pavilion",
   },
   {
-    id: "g-12",
-    src: "/assets/rooms/garden-view-thumb5.png",
-    title: "Illuminated Garden Walkways Under Tall Casuarina Palms",
-    category: "Celebrations",
-    locationTag: "Garden Pathways",
-  },
-
-  // Pool & Twilight
-  {
-    id: "g-13",
-    src: "/assets/rooms/pool-view-thumb4.png",
-    title: "Signature Resort Swimming Pool Under Coastal Sunlight",
-    category: "Pool",
-    locationTag: "Pool Deck",
+    id: "bbs-20",
+    src: "/assets/gallery/resort/dsc-04336.webp",
+    title: "Twilight Evening Ambiance Across Resort Lawns",
+    category: "Pool & Ambiance",
+    locationTag: "Twilight Grounds",
   },
   {
-    id: "g-14",
-    src: "/assets/rooms/pool-view-thumb5.jpg",
-    title: "Poolside Twilight View with Starry Night Sky Silhouettes",
-    category: "Pool",
-    locationTag: "Pool Deck · Blue Hour",
+    id: "bbs-21",
+    src: "/assets/gallery/resort/dsc-04338.webp",
+    title: "Illuminated Night-time Courtyard & Palm Canopy",
+    category: "Pool & Ambiance",
+    locationTag: "Evening Courtyard",
   },
   {
-    id: "g-15",
-    src: "/assets/rooms/pool-view-thumb3.jpg",
-    title: "Golden Hour Sunset Reflections Across the Shimmering Waters",
-    category: "Pool",
-    locationTag: "Pool Deck · Sunset",
-  },
-  {
-    id: "g-16",
-    src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
-    title: "Evening Amber Lanterns & Poolside Relaxation Loungers",
-    category: "Pool",
-    locationTag: "Pool Deck",
-  },
-
-  // Surroundings & Kelva Landmarks
-  {
-    id: "g-17",
-    src: "/assets/location/location-drone-shitlamata.jpg",
-    title: "Aerial View: Ancient Sheetla Devi Temple Directly Opposite Resort",
-    category: "Surroundings",
-    locationTag: "Opposite Gate (0 Mins)",
-  },
-  {
-    id: "g-18",
-    src: "/assets/location/location-surroundings-beach.webp",
-    title: "Pristine Kelva Beach Coastline (1 Min Walk from Resort)",
-    category: "Surroundings",
-    locationTag: "Kelva Beach Shoreline",
-  },
-  {
-    id: "g-19",
-    src: "/assets/location/location-kelvafort.jpg",
-    title: "Historic Portuguese Kelva Fort (Kelve Killa) Low-Tide Trail",
-    category: "Surroundings",
-    locationTag: "Kelva Fort · 1.2 km",
-  },
-  {
-    id: "g-20",
-    src: "/assets/location/location-kelvadam.avif",
-    title: "Serene Kelva Dam Reservoir & Scenic Sahyadri Foothills",
-    category: "Surroundings",
-    locationTag: "Kelva Dam · 10 km",
+    id: "bbs-22",
+    src: "/assets/gallery/resort/dsc-03041.webp",
+    title: "Beyond Sands Peaceful Kelva Beach Coastal Retreat",
+    category: "Resort & Lawns",
+    locationTag: "Resort Entrance",
   },
 ];
 
-type CategoryFilter = "All" | "Suites" | "Celebrations" | "Pool" | "Surroundings";
+type CategoryFilter = "All" | "Resort & Lawns" | "Suites & Rooms" | "Dining & Events" | "Pool & Ambiance";
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("All");
@@ -209,44 +217,46 @@ export default function GalleryPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-warm-ivory text-charcoal pt-28 sm:pt-36 pb-20 select-none">
+      <div className="min-h-[100dvh] bg-transparent text-charcoal pt-32 sm:pt-36 pb-20 select-none">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           
-          {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-champagne-gold mb-8">
-            <Link href="/" className="hover:text-deep-navy transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-charcoal/60">Resort Gallery</span>
-          </nav>
+          {/* Centered Elegant Editorial Header */}
+          <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
+            {/* Breadcrumbs */}
+            <nav className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-champagne-gold mb-5">
+              <Link href="/" className="hover:text-deep-navy transition-colors">Home</Link>
+              <span>/</span>
+              <span className="text-charcoal/60">Resort Gallery</span>
+            </nav>
 
-          {/* Hero Header */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 hairline-b border-charcoal/15 pb-10">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-champagne-gold/15 border border-champagne-gold/30 text-champagne-gold font-sans text-xs font-semibold tracking-wider uppercase mb-4">
+            <div className="block mb-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-champagne-gold/15 border border-champagne-gold/30 text-champagne-gold font-sans text-xs font-semibold tracking-wider uppercase">
                 <Camera className="w-3.5 h-3.5" />
-                <span>Visual Walkthrough · Palghar's #1 Resort</span>
+                <span>Visual Walkthrough · Beyond Sands Resort</span>
               </div>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal text-deep-navy tracking-tight leading-[1.1]">
-                RESORT PHOTO GALLERY
-              </h1>
-              <p className="font-sans text-base sm:text-lg text-charcoal/75 font-light mt-4 leading-relaxed">
-                Immerse yourself in authentic photography of Beyond Sands. Located <strong>directly opposite Sheetla Devi Temple</strong> and <strong>1 minute from Kelva Beach</strong>, explore our luxury suites, sparkling swimming pool, 15,000 sq ft celebration lawns, and pure vegetarian dining sanctuaries.
-              </p>
             </div>
 
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap gap-2 shrink-0">
-              {(["All", "Suites", "Celebrations", "Pool", "Surroundings"] as CategoryFilter[]).map((cat) => (
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-normal text-deep-navy tracking-tight leading-tight">
+              Resort Photo Gallery
+            </h1>
+
+            <p className="font-sans text-sm sm:text-base text-charcoal/75 font-light mt-4 max-w-2xl mx-auto leading-relaxed">
+              Explore authentic photography across Beyond Sands. Located directly opposite Sheetla Devi Temple and 1 minute from Kelva Beach, discover our swimming pool, luxury suites, 15,000 sq ft celebration lawns, and pure veg dining pavilions.
+            </p>
+
+            {/* Category Filter Pills (Centered & Balanced) */}
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mt-8">
+              {(["All", "Resort & Lawns", "Suites & Rooms", "Dining & Events", "Pool & Ambiance"] as CategoryFilter[]).map((cat) => (
                 <button
                   key={cat}
                   onClick={() => {
                     setActiveCategory(cat);
                     setLightboxIndex(null);
                   }}
-                  className={`px-4 py-2 rounded-full font-sans text-xs uppercase tracking-wider font-semibold transition-all cursor-pointer ${
+                  className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-sans text-xs sm:text-[13px] uppercase tracking-wider font-semibold transition-all cursor-pointer ${
                     activeCategory === cat
-                      ? "bg-deep-navy text-warm-ivory shadow-md"
-                      : "bg-white/80 hover:bg-white text-charcoal/70 border border-charcoal/10"
+                      ? "bg-deep-navy text-warm-ivory shadow-md scale-105"
+                      : "bg-white/80 hover:bg-white text-charcoal/75 border border-charcoal/15 hover:border-champagne-gold/50"
                   }`}
                 >
                   {cat === "All" ? `All Photos (${GALLERY_PHOTOS.length})` : cat}
@@ -261,7 +271,7 @@ export default function GalleryPage() {
               <div
                 key={photo.id}
                 onClick={() => setLightboxIndex(idx)}
-                className="group relative aspect-[16/11] rounded-3xl overflow-hidden bg-white/80 border border-charcoal/15 shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgb(0,0,0,0.12)] transition-all duration-500 cursor-pointer"
+                className="group relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/80 border border-charcoal/15 shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgb(0,0,0,0.12)] transition-all duration-500 cursor-pointer"
               >
                 <Image
                   src={photo.src}
@@ -271,24 +281,11 @@ export default function GalleryPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 
-                {/* Floating Tag */}
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="px-3 py-1 rounded-full bg-deep-navy/85 backdrop-blur-md text-champagne-gold font-sans text-[11px] font-semibold uppercase tracking-wider">
-                    {photo.locationTag}
-                  </span>
-                </div>
-
-                {/* Hover Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/90 via-deep-navy/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <div className="flex items-center justify-between text-white mb-1">
-                    <span className="font-sans text-[11px] uppercase tracking-wider text-champagne-gold">
-                      {photo.category}
-                    </span>
-                    <Maximize2 className="w-4 h-4 text-white/80" />
+                {/* Clean hover action icon (No badges, no captions) */}
+                <div className="absolute inset-0 bg-black/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                  <div className="w-10 h-10 rounded-full bg-deep-navy/70 backdrop-blur-md text-white flex items-center justify-center shadow-lg">
+                    <Maximize2 className="w-4 h-4 text-white" />
                   </div>
-                  <p className="font-display text-white text-lg font-medium leading-snug">
-                    {photo.title}
-                  </p>
                 </div>
               </div>
             ))}
@@ -307,7 +304,7 @@ export default function GalleryPage() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="font-sans text-xs sm:text-sm tracking-widest text-champagne-gold uppercase">
-                  {lightboxIndex + 1} / {filteredPhotos.length} · {filteredPhotos[lightboxIndex].locationTag}
+                  {lightboxIndex + 1} / {filteredPhotos.length}
                 </div>
                 <button
                   onClick={() => setLightboxIndex(null)}
@@ -347,14 +344,7 @@ export default function GalleryPage() {
                 </button>
               </div>
 
-              <div
-                className="mt-4 sm:mt-6 text-center max-w-2xl px-4 z-10"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <p className="font-display text-white text-lg sm:text-xl font-normal tracking-wide">
-                  {filteredPhotos[lightboxIndex].title}
-                </p>
-              </div>
+
             </div>
           )}
 
@@ -393,7 +383,7 @@ export default function GalleryPage() {
           </section>
 
         </div>
-      </main>
+      </div>
 
       <Footer />
     </>

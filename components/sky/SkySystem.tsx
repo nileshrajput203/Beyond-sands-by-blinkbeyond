@@ -74,55 +74,75 @@ export function SkySystem() {
       sky.style.background = `linear-gradient(180deg, ${topColor} 0%, ${bottomColor} 100%)`;
     };
 
+    let ticking = false;
+    const scheduleUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        updateSkyGradient();
+      });
+    };
+
     // Initialize initial state
     updateSkyGradient();
 
-    // Segment 1: Rooms -> Location (S0 Morning -> S1 Day)
-    const st1 = ScrollTrigger.create({
-      trigger: "#rooms-section",
-      start: "bottom center",
-      endTrigger: "#location-section",
-      end: "top center",
-      scrub: 1,
-      onUpdate: (self) => {
-        p1 = self.progress;
-        updateSkyGradient();
-      },
-    });
+    const mm = gsap.matchMedia();
 
-    // Segment 2: Location Spacer -> Food (S1 Day -> S2 Dusk)
-    const st2 = ScrollTrigger.create({
-      trigger: "#location-food-spacer",
-      start: "top center",
-      endTrigger: "#food-section",
-      end: "top center",
-      scrub: 1,
-      onUpdate: (self) => {
-        p2 = self.progress;
-        updateSkyGradient();
-      },
-    });
+    // Only run continuous linear-gradient JS recalculations on desktop (>= 768px).
+    // On mobile, keeping the fixed sky background static avoids repainting the entire viewport on every scroll frame.
+    mm.add("(min-width: 768px)", () => {
+      // Segment 1: Rooms -> Location (S0 Morning -> S1 Day)
+      const st1 = ScrollTrigger.create({
+        trigger: "#rooms-section",
+        start: "bottom center",
+        endTrigger: "#location-section",
+        end: "top center",
+        scrub: 1,
+        onUpdate: (self) => {
+          p1 = self.progress;
+          scheduleUpdate();
+        },
+      });
 
-    // Segment 3: Food -> Gallery & Footer (S2 Dusk -> S3 Night)
-    const st3 = ScrollTrigger.create({
-      trigger: "#food-section",
-      start: "center center",
-      endTrigger: "#gallery-section",
-      end: "top center",
-      scrub: 1,
-      onUpdate: (self) => {
-        p3 = self.progress;
-        updateSkyGradient();
-        if (starsRef.current) {
-          starsRef.current.style.opacity = (p3 * 0.06).toFixed(4);
-        }
-      },
+      // Segment 2: Location Spacer -> Food (S1 Day -> S2 Dusk)
+      const st2 = ScrollTrigger.create({
+        trigger: "#location-food-spacer",
+        start: "top center",
+        endTrigger: "#food-section",
+        end: "top center",
+        scrub: 1,
+        onUpdate: (self) => {
+          p2 = self.progress;
+          scheduleUpdate();
+        },
+      });
+
+      // Segment 3: Food -> Gallery & Footer (S2 Dusk -> S3 Night)
+      const st3 = ScrollTrigger.create({
+        trigger: "#food-section",
+        start: "center center",
+        endTrigger: "#gallery-section",
+        end: "top center",
+        scrub: 1,
+        onUpdate: (self) => {
+          p3 = self.progress;
+          scheduleUpdate();
+          if (starsRef.current) {
+            starsRef.current.style.opacity = (p3 * 0.06).toFixed(4);
+          }
+        },
+      });
+
+      return () => {
+        st1.kill();
+        st2.kill();
+        st3.kill();
+      };
     });
 
     return () => {
-      st1.kill();
-      st2.kill();
-      st3.kill();
+      mm.revert();
     };
   }, [pathname]);
 
@@ -134,6 +154,8 @@ export function SkySystem() {
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #F8F6F1 0%, #F0E9DC 100%)",
+        contain: "strict",
+        transform: "translateZ(0)",
       }}
     >
       {/* Subtle Static Starfield Canvas/SVG (under 6% opacity) for deep night */}

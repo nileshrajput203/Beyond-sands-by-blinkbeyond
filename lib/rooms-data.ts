@@ -40,7 +40,7 @@ export const ROOMS_DATA: RoomItem[] = [
     id: "garden-view",
     numeral: "1.",
     index: "01",
-    name: "Garden View Room",
+    name: "Garden-View AC Family Room in Palghar (2–4 Guests)",
     price: 5000,
     priceFormatted: "₹5,000",
     originalPrice: "₹7,000",
@@ -69,7 +69,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹5,000",
         priceSuffix: "/ Night",
         meals: null,
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'd like to book the Garden View Room — Accommodation Only (no food) at ₹5,000/night. Can you share availability?"
       },
@@ -80,7 +80,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹2,800",
         priceSuffix: "/ Per Person",
         meals: ["Lunch", "Hi-Tea", "Dinner", "Breakfast"],
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'm interested in the Garden View Room — Per Person Package at ₹2,800/person (4 person min, food included). Can you share details and availability?"
       },
@@ -91,7 +91,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹7,000",
         priceSuffix: "/ Night",
         meals: ["Lunch", "Hi-Tea", "Dinner", "Breakfast"],
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'd like to book the Garden View Room — Couple Package at ₹7,000/night (food included). Can you share availability?"
       }
@@ -101,7 +101,7 @@ export const ROOMS_DATA: RoomItem[] = [
     id: "pool-view",
     numeral: "2.",
     index: "02",
-    name: "Pool View Room",
+    name: "Pool-View AC Deluxe Room in Kelva (2–4 Guests)",
     price: 5000,
     priceFormatted: "₹5,000",
     originalPrice: "₹8,000",
@@ -120,7 +120,6 @@ export const ROOMS_DATA: RoomItem[] = [
       { src: "/assets/rooms/pool-view-thumb1.jpg", alt: "Premium Suite Bedroom Layout" },
       { src: "/assets/rooms/pool-view-thumb2.jpg", alt: "Cozy Lounge Reading Corner" },
       { src: "/assets/rooms/pool-view-thumb3.jpg", alt: "Sunset Reflection Across Pool" },
-      { src: "/assets/rooms/pool-view-thumb4.png", alt: "Azure Swimming Pool Daylight" },
     ],
     packages: [
       {
@@ -130,7 +129,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹5,000",
         priceSuffix: "/ Night",
         meals: null,
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'd like to book the Pool View Room — Accommodation Only (no food) at ₹5,000/night. Can you share availability?"
       },
@@ -141,7 +140,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹2,800",
         priceSuffix: "/ Per Person",
         meals: ["Lunch", "Hi-Tea", "Dinner", "Breakfast"],
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'm interested in the Pool View Room — Per Person Package at ₹2,800/person (4 person min, food included). Can you share details and availability?"
       },
@@ -152,7 +151,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹7,000",
         priceSuffix: "/ Night",
         meals: ["Lunch", "Hi-Tea", "Dinner", "Breakfast"],
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'd like to book the Pool View Room — Couple Package at ₹7,000/night (food included). Can you share availability?"
       }
@@ -162,7 +161,7 @@ export const ROOMS_DATA: RoomItem[] = [
     id: "couple-room",
     numeral: "3.",
     index: "03",
-    name: "Couple Room",
+    name: "Couple Room in Kelve Beach (2–3 Guests)",
     price: 4500,
     priceFormatted: "₹4,500",
     originalPrice: "₹9,500",
@@ -191,7 +190,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹2,800",
         priceSuffix: "/ Per Person",
         meals: ["Lunch", "Hi-Tea", "Dinner", "Breakfast"],
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'm interested in the Couple Room — Per Person Package at ₹2,800/person (food included). Can you share details and availability?"
       },
@@ -202,7 +201,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹7,000",
         priceSuffix: "/ Night",
         meals: ["Lunch", "Hi-Tea", "Dinner", "Breakfast"],
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'd like to book the Couple Room — Couple Package at ₹7,000/night (food included). Can you share availability?"
       }
@@ -212,13 +211,13 @@ export const ROOMS_DATA: RoomItem[] = [
     id: "family-dorm",
     numeral: "4.",
     index: "04",
-    name: "Family Dorm",
+    name: "AC Group Dormitory in Kelve Beach (6–15 Guests)",
     price: 6500,
     priceFormatted: "₹6,500",
     originalPrice: "₹14,000",
     discountPercent: 54,
     size: "650 sq ft",
-    guests: 8,
+    guests: 15,
     units: 1,
     bedType: "Multiple Premium Beds",
     view: "Garden & Property Grounds",
@@ -241,7 +240,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹2,800",
         priceSuffix: "/ Per Person",
         meals: ["Lunch", "Hi-Tea", "Dinner", "Breakfast"],
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'm interested in the Family Dorm — Per Person Package at ₹2,800/person (4 person min, food included). Can you share details and availability?"
       }
@@ -251,7 +250,7 @@ export const ROOMS_DATA: RoomItem[] = [
     id: "garden-view-family",
     numeral: "5.",
     index: "05",
-    name: "Garden View Family Room",
+    name: "Garden-View AC Family Suite in Palghar (4–6 Guests)",
     price: 6000,
     priceFormatted: "₹6,000",
     originalPrice: "₹10,000",
@@ -280,7 +279,7 @@ export const ROOMS_DATA: RoomItem[] = [
         priceLabel: "₹2,800",
         priceSuffix: "/ Per Person",
         meals: ["Lunch", "Hi-Tea", "Dinner", "Breakfast"],
-        checkin: "12:00 PM",
+        checkin: "01:00 PM",
         checkout: "11:00 AM",
         whatsappMsg: "Hi Beyond Sands! I'm interested in the Garden View Family Room — Per Person Package at ₹2,800/person (food included). Can you share availability?"
       }
